@@ -7,18 +7,33 @@ import pandas as pd
 
 win = visual.Window([600,400], color='black', fullscr=0)
 
-#trying to create a textbox - need to fix
-#textbox=visual.TextBox(window=win,text='hello')
-#textbox.draw()
-#win.flip()
-#event.waitKeys(maxWait=3, keyList=['1', '2'], clearEvents=True)
-#win.flip()
+#Making a textbox
+instruction = visual.TextStim(win,color="white")
+quitKeys = ['escape', 'esc']
+ansKeys = ['return']
+keyboardKeys = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','space']
+answer = ''
+complete_answer = False
+while not complete_answer:
+    instruction.setText(u'answer : {0}'.format(answer))
+    instruction.draw()
+    win.flip()
+    for letter in (keyboardKeys):
+        if event.getKeys([letter]):
+            answer += letter
+    if event.getKeys(['backspace']):
+        answer = answer[:-1]
+    if event.getKeys([quitKeys[0]]):
+        core.quit()
+    if event.getKeys([ansKeys[0]]):
+        complete_answer = True
 
+print(1/0)
 
 #try to figure out how to change background color
 visual.Window(color='blue') #possibly blue
 event.waitKeys(maxWait=3, keyList=['1', '2'], clearEvents=True)
-print(1/0)
+
 
 # basic text
 ready_text = visual.TextStim(win, text='hello world!')
