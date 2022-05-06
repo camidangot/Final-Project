@@ -10,7 +10,7 @@ win = visual.Window([600,400], color='black', fullscr=0)
 
 
 # first piece of instructions - welcoming player to game
-ready_text = visual.TextStim(win, text='Hey players! Welcome to Language Master950! Click the space bar for instructions on how to play!')
+ready_text = visual.TextStim(win, text='Hey players! Welcome to Language Master950! Click the space bar for instructions on how to play!', height=.3)
 ready_text.draw()
 win.flip()
 event.waitKeys(maxWait=3, keyList=['space'], clearEvents=True)
@@ -99,13 +99,13 @@ win.flip()
 event.waitKeys(maxWait=30, keyList=['space'], clearEvents=True)
 win.flip()
 
-#if the person choses english and spanish show this text as the key (figure out how to do some sort of if statement for this according to buttons pressed
+#making a dictionary for the key
 language_to_color_dict = {}
 language_to_color_dict['spanish'] = 'blue'
 language_to_color_dict['english'] = 'red'
-languages = ['english','spanish']
 
-#language_to_color_dict.keys()
+
+#language_to_color_dict.keys(languages)
 
 #color_list = []
 #for l in languages:
@@ -113,7 +113,8 @@ languages = ['english','spanish']
     #color_list.append(language_to_color_dict[l])
 
 
-ready_text = visual.TextStim(win, text='This will be your key for the game:')
+
+ready_text = visual.TextStim(win, text='This will be the key for the game:')
 end_text = visual.TextStim(win, text= language_to_color_dict, pos=(0,-.5))
 ready_text.draw()
 end_text.draw()
@@ -147,7 +148,7 @@ win.flip()
 event.waitKeys(maxWait=5, keyList=['space'], clearEvents=True)
 
 ready_text = visual.TextStim(win, text='If you are ready to play press the space bar!')
-end_text = visual.TextStim(win, text='remember your key:', pos=(0,-.5))
+end_text = visual.TextStim(win, text='remember the key:', pos=(0,-.5))
 final_text = visual.TextStim(win, text= language_to_color_dict, pos=(0,-.7))
 ready_text.draw()
 end_text.draw()
@@ -182,13 +183,7 @@ while not complete_answer:
 
 #print(1/0)
 
-#try to figure out how to change background color
-visual.Window(color='blue') #possibly blue
-event.waitKeys(maxWait=3, keyList=['1', '2'], clearEvents=True)
 
-#red
-visual.Window(color='red')
-event.waitKeys(maxWait=3, keyList=['1', '2'], clearEvents=True)
 
 
 
