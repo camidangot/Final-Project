@@ -112,8 +112,8 @@ for seconds in time_dict.keys():
 print(final_scores)
 print(mean_time)
 
-ready_text = visual.TextStim(win, text='Your score is: '+' '.join(final_scores))
-end_text = visual.TextStim(win, text= 'Your average respose time is: '+' '.join(mean_time) pos=(0,-.5))
+ready_text = visual.TextStim(win, text='Your score is: '+' '.join(final_scores), color = "black")
+end_text = visual.TextStim(win, text= 'Your average respose time is: '+' '.join(mean_time), pos=(0,-.5), color = "black")
 ready_text.draw()
 end_text.draw()
 win.flip()
