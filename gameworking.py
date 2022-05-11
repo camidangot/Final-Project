@@ -23,12 +23,23 @@ df = df.append({'trialnumber':5, 'imagefile':'tree.webp','English':['tree'],'Spa
 
 
 #making dictionary of languages/background
-language_to_color_dict = {}git
+language_to_color_dict = {}
 language_to_color_dict['English'] = 'blue'
 language_to_color_dict['Spanish'] = 'red'
-#make variables based on this dictionary:
 languages_list = list(language_to_color_dict.keys())
 color_list = list(language_to_color_dict.values())
+
+
+
+
+score = {}
+for L in languages_list:
+	score[L] = []
+
+time_dict = {}
+for T in languages_list:
+	time_dict[T] = []
+
 
 for trial in range(5):
 	this_trial = random.choice(df.trialnumber)
@@ -50,6 +61,7 @@ for trial in range(5):
 	keyboardKeys = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','space']
 	answer = ''
 	complete_answer = False
+	timer = core.Clock()
 	while not complete_answer:
 		instruction.setText(u'answer : {0}'.format(answer))
 		background_color.draw()
@@ -65,7 +77,7 @@ for trial in range(5):
 			core.quit()
 		if event.getKeys([ansKeys[0]]):
 			complete_answer = True
-
+	trial_time = timer.getTime()
 
 	print(answer)
 	correct_or_not = answer in this_trial_answer
@@ -77,3 +89,33 @@ for trial in range(5):
 	result_text.draw()
 	win.flip()
 	event.waitKeys(maxWait=3, keyList=['space'], clearEvents=True)
+
+	score[this_trial_language].append(correct_or_not)
+	time_dict[this_trial_language].append(trial_time)
+
+
+
+final_scores = {}
+mean_time = {}
+
+for lang in score.keys():
+	score_list_lang = [int(x) for x in score[lang]]
+	score_percent_language = np.mean(score_list_lang)
+	#score_percent_language = (sum(score_list_lang))/(len(score_list_lang))
+	final_scores[lang] = score_percent_language
+
+for seconds in time_dict.keys():
+	average_time = np.mean(time_dict[seconds])
+	mean_time[seconds] = average_time
+
+
+print(final_scores)
+print(mean_time)
+
+ready_text = visual.TextStim(win, text='Your score is: '+' '.join(final_scores))
+end_text = visual.TextStim(win, text= 'Your average respose time is: '+' '.join(mean_time) pos=(0,-.5))
+ready_text.draw()
+end_text.draw()
+win.flip()
+event.waitKeys(maxWait=30, keyList=['space'], clearEvents=True)
+win.flip()
