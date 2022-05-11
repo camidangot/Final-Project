@@ -10,7 +10,7 @@ win = visual.Window([600,400], color='black', fullscr=0)
 
 
 # first piece of instructions - welcoming player to game
-ready_text = visual.TextStim(win, text='Hey players! Welcome to Language Master950! Click the space bar for instructions on how to play!', height=.3)
+ready_text = visual.TextStim(win, text='Hey players! Welcome to Language Master950! Click the space bar for instructions on how to play!')
 ready_text.draw()
 win.flip()
 event.waitKeys(maxWait=3, keyList=['space'], clearEvents=True)
@@ -31,9 +31,9 @@ mymouse = event.Mouse(visible=True, win=win)
 
 
 label1 = visual.TextStim(win,pos=(-.5,0),text='English',color='black')
-mybutton1 = visual.Rect(win,pos=(-.5,0),fillColor='red',width=.5,height=.2)
+mybutton1 = visual.Rect(win,pos=(-.5,0),fillColor='blue',width=.5,height=.2)
 label2 = visual.TextStim(win,pos=(.5,0),text='Spanish',color='black')
-mybutton2 = visual.Rect(win,pos=(.5,0),fillColor='blue',width=.5,height=.2)
+mybutton2 = visual.Rect(win,pos=(.5,0),fillColor='red',width=.5,height=.2)
 label3 = visual.TextStim(win,pos=(0,0),text='done',color='black')
 mybutton3 = visual.Rect(win,pos=(0,0),fillColor='white',width=.5,height=.2)
 
@@ -51,12 +51,12 @@ win.flip()
 notdone = True
 languages = []
 while notdone:
-    if mymouse.isPressedIn(mybutton1):
-        languages.append('English')
-    if mymouse.isPressedIn(mybutton2):
-        languages.append('Spanish')
-    if mymouse.isPressedIn(mybutton3):
-        notdone = False
+	if mymouse.isPressedIn(mybutton1):
+		languages.append('English')
+	if mymouse.isPressedIn(mybutton2):
+		languages.append('Spanish')
+	if mymouse.isPressedIn(mybutton3):
+		notdone = False
 
 languages = list(set(languages)) # will remove the extras
 
@@ -93,7 +93,7 @@ win.flip()
 
 
 #Next piece of instructions:
-ready_text = visual.TextStim(win, text='Now let me tell you how the game works. You will see an image appear on your screen with a specific background color. Each color corresponds to a language. Once you see the image, type in the word in the language corresponding to the background. Press the space bar for the key!')
+ready_text = visual.TextStim(win, text='Now let me tell you how the game works. You will see an image appear on your screen with a specific background color. Each color corresponds to a language. Once you see the image, type in the word in the language corresponding to the background as fast as you can. Press the space bar for the key!')
 ready_text.draw()
 win.flip()
 event.waitKeys(maxWait=30, keyList=['space'], clearEvents=True)
@@ -101,16 +101,16 @@ win.flip()
 
 #making a dictionary for the key
 language_to_color_dict = {}
-language_to_color_dict['spanish'] = 'blue'
-language_to_color_dict['english'] = 'red'
+language_to_color_dict['spanish'] = 'red'
+language_to_color_dict['english'] = 'blue'
 
 
 #language_to_color_dict.keys(languages)
 
 #color_list = []
 #for l in languages:
-    #print(language_to_color_dict[l])
-    #color_list.append(language_to_color_dict[l])
+	#print(language_to_color_dict[l])
+	#color_list.append(language_to_color_dict[l])
 
 
 
@@ -134,10 +134,10 @@ event.waitKeys(maxWait=30, keyList=['space'], clearEvents=True)
 win.flip()
 
 #remember to change the image of hand cause this is only on my computer
-ready_text = visual.TextStim(win, text='If you see an image like this on a red background...',pos=(0,.7))
+ready_text = visual.TextStim(win, text='If you see an image like this on a blue background...',pos=(0,.7))
 end_text = visual.TextStim(win, text='Type the word "hand" in English', pos=(0,-.7))
 final_text = visual.TextStim(win, text='press space to continue', pos=(0,-.8))
-redbackground = visual.Rect(win,pos=(0,0),fillColor='red',width=200,height=200)
+redbackground = visual.Rect(win,pos=(0,0),fillColor='blue',width=200,height=200)
 image1 = visual.ImageStim(win=win, image='handpicture.png', units="pix", pos=(0,0),size=[200,200])
 redbackground.draw()
 image1.draw()
@@ -168,18 +168,18 @@ keyboardKeys = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p',
 answer = ''
 complete_answer = False
 while not complete_answer:
-    instruction.setText(u'answer : {0}'.format(answer))
-    instruction.draw()
-    win.flip()
-    for letter in (keyboardKeys):
-        if event.getKeys([letter]):
-            answer += letter
-    if event.getKeys(['backspace']):
-        answer = answer[:-1]
-    if event.getKeys([quitKeys[0]]):
-        core.quit()
-    if event.getKeys([ansKeys[0]]):
-        complete_answer = True
+	instruction.setText(u'answer : {0}'.format(answer))
+	instruction.draw()
+	win.flip()
+	for letter in (keyboardKeys):
+		if event.getKeys([letter]):
+			answer += letter
+	if event.getKeys(['backspace']):
+		answer = answer[:-1]
+	if event.getKeys([quitKeys[0]]):
+		core.quit()
+	if event.getKeys([ansKeys[0]]):
+		complete_answer = True
 
 #print(1/0)
 
