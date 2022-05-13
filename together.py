@@ -35,8 +35,8 @@ label1 = visual.TextStim(win,pos=(-.5,0),text='English',color='black')
 mybutton1 = visual.Rect(win,pos=(-.5,0),fillColor='blue',width=.5,height=.2)
 label2 = visual.TextStim(win,pos=(.5,0),text='Spanish',color='black')
 mybutton2 = visual.Rect(win,pos=(.5,0),fillColor='red',width=.5,height=.2)
-label3 = visual.TextStim(win,pos=(0,0),text='done',color='black')
-mybutton3 = visual.Rect(win,pos=(0,0),fillColor='white',width=.5,height=.2)
+label3 = visual.TextStim(win,pos=(0,0),text='done',color='white')
+mybutton3 = visual.Rect(win,pos=(0,0),fillColor='black',width=.5,height=.2)
 
 # notice -- draw the buttons and then their labels, so the labels are on top!
 mybutton1.draw()
@@ -104,9 +104,9 @@ event.waitKeys(maxWait=30, keyList=['space'], clearEvents=True)
 win.flip()
 
 #remember to change the image of hand cause this is only on my computer
-ready_text = visual.TextStim(win, text='If you see an image like this on a blue background...',pos=(0,.7), color='black')
-end_text = visual.TextStim(win, text='Type the word "hand" in English', pos=(0,-.7), color='black')
-final_text = visual.TextStim(win, text='press space to continue', pos=(0,-.8), color='black')
+ready_text = visual.TextStim(win, text='If you see an image like this on a blue background...',pos=(0,.7), color='white')
+end_text = visual.TextStim(win, text='Type the word "hand" in English', pos=(0,-.7), color='white')
+final_text = visual.TextStim(win, text='press space to continue', pos=(0,-.8), color='white')
 bluebackground = visual.Rect(win,pos=(0,0),fillColor='blue',width=200,height=200)
 image1 = visual.ImageStim(win=win, image='handpicture.png', units="pix", pos=(0,0),size=[200,200])
 bluebackground.draw()
@@ -173,7 +173,7 @@ for trial in range(5):
 	image = visual.ImageStim(win=win, image=this_trial_picture, units="pix", pos=(0,0),size=[300,300])
 	background_color.draw()
 	image.draw()
-	event.waitKeys(maxWait=1, keyList=['1', '2'], clearEvents=True)
+	event.waitKeys(maxWait=1, keyList=['return'], clearEvents=True)
 
 	instruction = visual.TextStim(win, color="black", pos=(0,-.8))
 	quitKeys = ['escape', 'esc']
@@ -200,6 +200,7 @@ for trial in range(5):
 	trial_time = timer.getTime()
 
 	print(answer)
+
 	correct_or_not = answer in this_trial_answer
 	if correct_or_not == True:
 		message = 'correct!'
@@ -232,11 +233,28 @@ for seconds in time_dict.keys():
 print(final_scores)
 print(mean_time)
 
+intro_string = "Your score is: "
+for key in final_scores.keys():
+	intro_string += key
+	intro_string += " = "
+	intro_string += str(final_scores[key])
 
-ready_text = visual.TextStim(win, text='Your score is: '+' '.join(final_scores), color="black")
-end_text = visual.TextStim(win, text= 'Your average respose time is: '+' '.join(mean_time), color="black", pos=(0,-.5))
+next_string = "Your average response time is: "
+for K in mean_time.keys():
+	next_string += K
+	next_string += " = "
+	next_string += str(mean_time[K])
+
+ready_text = visual.TextStim(win, text= intro_string, color="black", pos=(0,.5))
+end_text = visual.TextStim(win, text= next_string, color="black", pos=(0,-.5))
 ready_text.draw()
 end_text.draw()
 win.flip()
 event.waitKeys(maxWait=30, keyList=['space'], clearEvents=True)
 win.flip()
+
+#intro string = "your score is"
+#for key in scores.keys()
+	#intro.string += key
+	#intro string += "="
+	#intro string += score[key] have to turn this into a string then just when doing text stim do text = intro.string
