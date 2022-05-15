@@ -6,3 +6,5 @@ Due to the randomization we used, since there only five trials per game, not eve
 We hope our game will allow players to compare their knowledge between languages (such as the speed in which they can come up with answers for Spanish vs. English), as well as explore their ability to adapt to sudden and quick transitions between languages! 
 
 The final code which we are submitting is under the file FINAL.py in the github — it combines all of the seperate parts of our code which we used to build the game. In addition, in order to create our project we used the psychopy toolboxfrom from which we imported visual, monitors, Window, core, event. We also imported csv, numpy, panda, Image from PIL, and random.
+
+You can find a video reccording of the game being played under the file language_game2.mov
